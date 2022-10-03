@@ -52,7 +52,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
   const userRef = doc(db, "users", `${userAuth.uid}`);
   const snapshot = await getDoc(userRef);
-  console.log(userAuth);
+
   if (!snapshot.exists()) {
     const createdAt = new Date();
     try {
@@ -61,7 +61,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName: userAuth.displayName,
         email: userAuth.email,
         createdAt: createdAt,
-        photoURL: userAuth.photoURL,
+        ...additionalData,
       });
     } catch (error) {
       console.log("error creating user", error.message);
