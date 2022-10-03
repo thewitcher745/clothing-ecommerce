@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+import CartIcon from "../cart-icon/carticon.component";
 
 import "./header.styles.scss";
 import ProfileLink from "./sign-in-out-link.component.";
 
-function Header() {
+function Header({ isShowing }) {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -20,9 +23,15 @@ function Header() {
           CONTACT
         </Link>
         <ProfileLink />
+        <CartIcon />
+        {isShowing ? <CartDropdown /> : null}
       </div>
     </div>
   );
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  isShowing: state.cart.isShowing,
+});
+
+export default connect(mapStateToProps, null)(Header);
