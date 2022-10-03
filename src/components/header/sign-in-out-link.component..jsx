@@ -26,10 +26,7 @@ function ProfileLink({ currentUser, signOut }) {
   return <>{isLoadingUser ? <div>LOADING USER</div> : signInLinks}</>;
 }
 
-const mapStateToProps = (state) => {
-  console.log(state);
-  return { currentUser: state.user.currentUser };
-};
+const mapStateToProps = (state) => ({ currentUser: state.user.currentUser });
 
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(signOut()),

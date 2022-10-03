@@ -1,8 +1,7 @@
-Fix signup forms to properly show errors to user (email exists, incorrect password, logging in, etc)
+[ ] Make signup forms properly show errors to user (email exists, incorrect password, logging in, etc)
 
-fix input field getting focused when clicking on sign in buttons
-make the whole thing responsive
+[X] fix input field getting focused when clicking on sign in buttons
 
----
+[ ] make the whole thing responsive
 
-- conditional formatting for sign in and sin up form to not show up when a user is logged in
+[X] conditional formatting for sign in and sin up form to not show up when a user is logged in
