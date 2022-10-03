@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import "./sign-in-out-links.styles.scss";
 
 import { SignInContext } from "../../contexts/SignInContext";
+import { signOut } from "../../redux/user/user.actions";
 
-function ProfileLink() {
-  const { currentUser, signOut, isLoadingUser } = useContext(SignInContext);
+function ProfileLink({ currentUser, signOut }) {
+  const { isLoadingUser } = useContext(SignInContext);
   const signInLinks = currentUser ? (
     <div className="profile-link-container">
       <Link className="sign-option" to="/profile">
@@ -24,4 +26,12 @@ function ProfileLink() {
   return <>{isLoadingUser ? <div>LOADING USER</div> : signInLinks}</>;
 }
 
-export default ProfileLink;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signOut: () => dispatch(signOut()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileLink);
