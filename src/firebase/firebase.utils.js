@@ -7,7 +7,7 @@ import {
   getDoc,
   setDoc,
   doc,
-} from "firebase/firestore/lite";
+} from "firebase/firestore";
 
 const config = {
   apiKey: "AIzaSyAzIqdqukw8JfnzsUMEEyZIssXIInGQFI0",
@@ -52,12 +52,23 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
   const userRef = doc(db, "users", `${userAuth.uid}`);
   const snapshot = await getDoc(userRef);
+  console.log(userAuth);
   if (!snapshot.exists()) {
-    await setDoc(userRef, {
-      name: `${userAuth.displayName}`,
-      email: `${userAuth.email}`,
-    });
+    const createdAt = new Date();
+    try {
+      await setDoc(userRef, {
+        id: userAuth.uid,
+        displayName: userAuth.displayName,
+        email: userAuth.email,
+        createdAt: createdAt,
+        photoURL: userAuth.photoURL,
+      });
+    } catch (error) {
+      console.log("error creating user", error.message);
+    }
   }
+
+  return userRef;
 };
 
 export const auth = getAuth();

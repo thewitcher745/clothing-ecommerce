@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useContext } from "react";
 import { Routes as Switch, Route } from "react-router-dom";
+import { getDoc } from "firebase/firestore";
 
 import "./App.css";
 
@@ -9,22 +10,26 @@ import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up
 import Header from "./components/header/header.component";
 
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { SignInContext } from "./contexts/SignInContext";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState();
+  const { setCurrentUser, setIsLoadingUser } = useContext(SignInContext);
 
   useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      setCurrentUser(user);
-
-      createUserProfileDocument(user, 1);
+    auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        setIsLoadingUser(true);
+        const userRef = await createUserProfileDocument(userAuth);
+        setCurrentUser((await getDoc(userRef)).data(), setIsLoadingUser(false));
+      }
     });
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
-      {currentUser ? <label>{currentUser.name}</label> : null}
-      <Header currentUser={currentUser} />
+      {/* {currentUser ? <label>{currentUser.name}</label> : null} */}
+      <Header />
       <Switch>
         <Route exact path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />

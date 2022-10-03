@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# A simple portfolio application for a clothing e-cmmerce application
+
+Utilizes (Or will utilize!) more or less all of the lower-level react concepts including Router, Context, Redux, Next.js server-side rendering
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
