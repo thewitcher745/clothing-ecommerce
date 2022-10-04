@@ -1,4 +1,4 @@
-# A simple portfolio application for a clothing e-cmmerce application
+# A simple portfolio code for a clothing e-commerce application
 
 Utilizes (Or will utilize!) more or less all of the lower-level react concepts including Router, Context, Redux, Next.js server-side rendering
 
@@ -66,7 +66,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 ### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
