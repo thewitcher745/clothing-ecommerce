@@ -13,9 +13,11 @@ import Header from "./components/header/header.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { SignInContext } from "./contexts/SignInContext";
 import { setCurrentUser } from "./redux/user/user.actions";
-import Checkout from "./pages/checkout/checkout.component";
 
-function App({ currentUser, setCurrentUser }) {
+import Checkout from "./pages/checkout/checkout.component";
+import { resetCart } from "./redux/cart/cart.actions";
+
+function App({ currentUser, setCurrentUser, resetCart }) {
   const { setIsLoadingUser } = useContext(SignInContext);
 
   useEffect(() => {
@@ -25,6 +27,8 @@ function App({ currentUser, setCurrentUser }) {
         const userRef = await createUserProfileDocument(userAuth);
         setCurrentUser((await getDoc(userRef)).data());
         setIsLoadingUser(false);
+      } else {
+        resetCart();
       }
     });
 
@@ -52,6 +56,7 @@ const mapStateToProps = ({ user }) => ({ currentUser: user.currentUser });
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  resetCart: () => dispatch(resetCart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

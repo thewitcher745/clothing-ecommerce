@@ -9,7 +9,7 @@ import CartIcon from "../cart-icon/carticon.component";
 import "./header.styles.scss";
 import ProfileLink from "./sign-in-out-link.component.";
 
-function Header({ isShowing }) {
+function Header({ isShowing, currentUser }) {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -23,7 +23,7 @@ function Header({ isShowing }) {
           CONTACT
         </Link>
         <ProfileLink />
-        <CartIcon />
+        {currentUser ? <CartIcon /> : null}
         {isShowing ? <CartDropdown /> : null}
       </div>
     </div>
@@ -32,6 +32,7 @@ function Header({ isShowing }) {
 
 const mapStateToProps = (state) => ({
   isShowing: state.cart.isShowing,
+  currentUser: state.user.currentUser,
 });
 
 export default connect(mapStateToProps, null)(Header);

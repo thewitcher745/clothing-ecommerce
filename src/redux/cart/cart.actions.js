@@ -11,3 +11,5 @@ export const changeItemQuantity = (item, delta) => ({
   type: "CHANGE_ITEM_QUANTITY",
   payload: { item, delta },
 });
+
+export const resetCart = () => ({ type: "RESET_CART" });

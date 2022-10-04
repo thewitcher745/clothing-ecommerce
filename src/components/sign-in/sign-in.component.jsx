@@ -14,6 +14,7 @@ class SignIn extends React.Component {
     this.state = {
       email: "",
       password: "",
+      incorrectPassword: false,
     };
   }
 
@@ -25,7 +26,8 @@ class SignIn extends React.Component {
       await signInWithEmailAndPassword(auth, email, password);
       this.setState({ email: "", password: "" });
     } catch (error) {
-      console.error(error);
+      if (error.message === "Firebase: Error (auth/user-not-found).")
+        this.setState({ incorrectPassword: true });
     }
   };
 
@@ -36,10 +38,15 @@ class SignIn extends React.Component {
   };
 
   render() {
+    const incorrectPasswordElement = (
+      <div style={{ color: "red" }}>Incorrect username and/or password.</div>
+    );
+
     return (
       <div className="sign-in">
         <h2>I already have an account</h2>
         <span>Sign in with your email and password</span>
+        {this.state.incorrectPassword ? incorrectPasswordElement : null}
 
         <form onSubmit={this.handleSubmit}>
           <FormInput

@@ -60,6 +60,9 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ),
       };
 
+    case "RESET_CART":
+      return { ...state, cartItems: [] };
+
     default:
       return state;
   }
