@@ -13,6 +13,7 @@ import Header from "./components/header/header.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { SignInContext } from "./contexts/SignInContext";
 import { setCurrentUser } from "./redux/user/user.actions";
+import Checkout from "./pages/checkout/checkout.component";
 
 function App({ currentUser, setCurrentUser }) {
   const { setIsLoadingUser } = useContext(SignInContext);
@@ -27,7 +28,7 @@ function App({ currentUser, setCurrentUser }) {
       }
     });
 
-    return unsubscribe;
+    return unsubscribe; // Return statement of a useEffect hook is similar to ComponentWillUnmount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -41,6 +42,7 @@ function App({ currentUser, setCurrentUser }) {
           path="/signin"
           element={currentUser ? <Navigate to="/" /> : <SignInAndSignUpPage />}
         />
+        <Route path="/checkout" element={<Checkout />} />
       </Switch>
     </div>
   );

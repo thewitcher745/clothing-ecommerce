@@ -33,6 +33,33 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         };
       }
 
+    case "REMOVE_ITEM":
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (item) => item.id !== action.payload.id
+        ),
+      };
+
+    case "CHANGE_ITEM_QUANTITY":
+      const findItem = state.cartItems.find(
+        (item) => item.id === action.payload.item.id
+      );
+
+      if (findItem.quantity <= 1 && action.payload.delta < 0) {
+        // If item quantity reaches zero after decrement, don't do anything
+        return state;
+      }
+
+      return {
+        ...state,
+        cartItems: state.cartItems.map((item) =>
+          item.id === action.payload.item.id
+            ? { ...item, quantity: item.quantity + action.payload.delta }
+            : item
+        ),
+      };
+
     default:
       return state;
   }

@@ -1,0 +1,16 @@
+.empty-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  padding: 20px;
+
+  .empty-text {
+    margin-bottom: 100px;
+
+    text-align: center;
+
+    color: rgb(70, 70, 70);
+  }
+}

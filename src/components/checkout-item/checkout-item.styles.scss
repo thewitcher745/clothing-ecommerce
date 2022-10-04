@@ -1,0 +1,51 @@
+.product-image {
+  img {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+td {
+  width: 23%;
+  text-align: center;
+  &.remove-field {
+    width: 8%;
+
+    &:active {
+      animation: press 0.1s ease-in-out;
+    }
+  }
+}
+
+.quantity-field {
+  button {
+    font-size: 1.1rem;
+    font-weight: bold;
+
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    &:active {
+      animation: press 0.1s ease-in-out;
+    }
+
+    &.disabled {
+      color: rgb(169, 169, 169);
+    }
+  }
+}
+
+@keyframes press {
+  0% {
+    scale: 1;
+  }
+
+  50% {
+    scale: 0.9;
+  }
+
+  100% {
+    scale: 1;
+  }
+}

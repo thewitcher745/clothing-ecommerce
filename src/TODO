@@ -4,4 +4,12 @@
 
 [ ] make the whole thing responsive
 
+[ ] Add dark mode
+
+[ ] Hide cart item if user is not logged in / display message when add to cart is clicked
+
+[ ] Overhaul entire UI using material ui
+
+[ ] Update backend with cart data (IMPORTANT!)
+
 [X] conditional formatting for sign in and sin up form to not show up when a user is logged in
