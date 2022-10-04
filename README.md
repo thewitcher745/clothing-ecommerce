@@ -1,4 +1,4 @@
-# A simple portfolio application for a clothing e-cmmerce application
+# A simple portfolio code for a clothing e-commerce application
 
 Utilizes (Or will utilize!) more or less all of the lower-level react concepts including Router, Context, Redux, Next.js server-side rendering
 
